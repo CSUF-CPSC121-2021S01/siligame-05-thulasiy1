@@ -16,9 +16,9 @@ class Game : public graphics::AnimationEventListener,
   Game(int width, int height)
       : width_(width), height_(height), image(width, height) {}
 
-  std::<Opponent>& GetOpponents() { return o; }
-  std::vector<OpponentProjectile>& GetOpponentProjectiles() { return op; }
-  std::vector<PlayerProjectile>& GetPlayerProjectiles() { return pp; }
+  std::unique_ptr<Opponent>& GetOpponents() { return o; }
+  std::unique_ptr<OpponentProjectile>& GetOpponentProjectiles() { return op; }
+  std::unique_ptr<PlayerProjectile>& GetPlayerProjectiles() { return pp; }
   Player& GetPlayer() { return p; }
 
   graphics::Image& GetGameScreen();

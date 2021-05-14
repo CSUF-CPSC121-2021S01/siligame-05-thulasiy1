@@ -31,9 +31,9 @@ void Game::CreatePlayerProjectiles() {
 void Game::Init() {
   p.SetX(180);
   p.SetY(350);
-  CreateOpponents();
-  CreateOpponentProjectiles();
-  CreatePlayerProjectiles();
+  //CreateOpponents();
+  //CreateOpponentProjectiles();
+  //CreatePlayerProjectiles();
   image.AddMouseEventListener(*this);
   image.AddAnimationEventListener(*this);
 }
@@ -81,21 +81,21 @@ void Game::MoveGameElements() {
 
 void Game::FilterIntersections() {
   for (int i = 0; i < o.size(); i++) {
-    if (p.IntersectsWith(o[i]) == true) {
+    if (p.IntersectsWith(&o[i]) == true) {
       p.SetIsActive(false);
       o[i].SetIsActive(false);
     }
   }
   for (int j = 0; j < o.size(); j++) {
     for (int k = 0; k < pp.size(); k++) {
-      if (pp[k].IntersectsWith(o[j]) == true) {
+      if (pp[k].IntersectsWith(&o[j]) == true) {
         pp[k].SetIsActive(false);
         o[j].SetIsActive(false);
       }
     }
   }
   for (int l = 0; l < op.size(); l++) {
-    if (p.IntersectsWith(op[l]) == true) {
+    if (p.IntersectsWith(&op[l]) == true) {
       p.SetIsActive(false);
       op[l].SetIsActive(false);
     }

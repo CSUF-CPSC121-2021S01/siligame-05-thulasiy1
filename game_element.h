@@ -22,7 +22,7 @@ class GameElement {
   bool GetIsActive() { return is_active_; }
 
   virtual void Move(const graphics::Image& picture) = 0;
-  bool IntersectsWith(const GameElement& game_element);
+  bool IntersectsWith(const GameElement* game_element);
   bool IsOutOfBounds(const graphics::Image& game_element);
 
  protected:

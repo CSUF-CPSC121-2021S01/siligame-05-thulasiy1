@@ -40,6 +40,10 @@ class Game : public graphics::AnimationEventListener,
 
   void OnMouseEvent(const graphics::MouseEvent& mouse_event) override;
 
+  void LaunchProjectile();
+
+  void RemoveInactive();
+
  private:
   int width_;
   int height_;

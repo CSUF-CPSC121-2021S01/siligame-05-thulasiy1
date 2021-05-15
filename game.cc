@@ -142,3 +142,12 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
 }
 
 void Game::Start() { image.ShowUntilClosed(); }
+
+void Game::LaunchProjectile() {
+  for (int i = 0; i < o.size(); i++) {
+    std::unique_ptr<OpponentProjectile> opponents = o[i]->LaunchProjectile();
+    if(o != nullptr) {
+      op.push_back(std::move(opponents));
+    }
+  }
+}

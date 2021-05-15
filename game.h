@@ -59,7 +59,7 @@ class Game : public graphics::AnimationEventListener,
   std::vector<std::unique_ptr<PlayerProjectile>> pp;
   Player p;
   int score_;
-  bool haslost_;
+  bool haslost_ = true;
 };
 
 #endif  // GAME_H

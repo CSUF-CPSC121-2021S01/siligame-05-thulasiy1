@@ -31,9 +31,9 @@ void Game::CreatePlayerProjectiles() {
 void Game::Init() {
   p.SetX(180);
   p.SetY(350);
-  // CreateOpponents();
-  // CreateOpponentProjectiles();
-  // CreatePlayerProjectiles();
+  CreateOpponents();
+  CreateOpponentProjectiles();
+  CreatePlayerProjectiles();
   image.AddMouseEventListener(*this);
   image.AddAnimationEventListener(*this);
 }
@@ -59,7 +59,6 @@ void Game::UpdateScreen() {
   if (p.GetIsActive()) {
     p.Draw(image);
   }
-  image.DrawText(0, 0, "Score: " + (image.GetScore()), white)
 }
 
 void Game::MoveGameElements() {
@@ -104,13 +103,8 @@ void Game::FilterIntersections() {
 }
 
 void Game::OnAnimationStep() {
-  if (o.size() < 1) {
-    CreateOpponents();
-  }
   MoveGameElements();
-  LaunchProjectile();
   FilterIntersections();
-  RemoveInactive();
   UpdateScreen();
   image.Flush();
 }
@@ -133,39 +127,7 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
       p.SetY(location_y);
     }
   }
-  if (mouse.GetMouseAction() == graphics::MouseAction::kMoved ||
-      mouse.GetMouseAction() == graphics::MouseAction::kDragged) {
-    std::unique_ptr<PlayerProjectile> OnMouseEvent_o =
-        std::make_unique<PlayerProjectile>(GetX(), GetY());
-    pp.push_back(std::move(OnMouseEvent_o));
-  }
+
 }
 
 void Game::Start() { image.ShowUntilClosed(); }
-
-void Game::LaunchProjectile() {
-  for (int i = 0; i < o.size(); i++) {
-    std::unique_ptr<OpponentProjectile> opponents = o[i]->LaunchProjectile();
-    if (o != nullptr) {
-      op.push_back(std::move(opponents));
-    }
-  }
-}
-
-void Game::RemoveInactive() {
-  for (int i = o.size(); i >= 0; i++) {
-    if (!o[i]->GetIsActive()) {
-      o.erase(o.begin() + i);
-    }
-  }
-  for (int j = op.size(); j >= 0; j++) {
-    if (!op[j]->GetIsActive()) {
-      op.erase(op.begin() + j);
-    }
-  }
-  for (int k = o.size(); k >= 0; k++) {
-    if (!pp[k]->GetIsActive()) {
-      pp.erase(pp.begin() + k);
-    }
-  }
-}

@@ -127,7 +127,6 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
       p.SetY(location_y);
     }
   }
-
 }
 
 void Game::Start() { image.ShowUntilClosed(); }

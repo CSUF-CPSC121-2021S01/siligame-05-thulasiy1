@@ -43,15 +43,3 @@ void OpponentProjectile::Move(const graphics::Image& picture) {
     SetIsActive(true);
   }
 }
-
-std::unique_ptr<OpponentProjectile> OpponentProjectile::LaunchProjectile() {
-  std::unique_ptr<OpponentProjectile> projectile;
-  int number;
-  if (number < 3) {
-    number++;
-    return nullptr;
-  } else {
-    projectile = std::make_unique<OpponentProjectile>(GetX(), GetY());
-    return std::move(projectile);
-  }
-}

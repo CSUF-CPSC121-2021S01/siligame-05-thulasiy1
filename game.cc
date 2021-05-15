@@ -150,7 +150,7 @@ void Game::RemoveInactive() {
       op.erase(op.begin() + j);
     }
   }
-  for (int k = o.size(); k >= 0; k++) {
+  for (int k = pp.size(); k >= 0; k++) {
     if (!pp[k]->GetIsActive()) {
       pp.erase(pp.begin() + k);
     }

@@ -74,5 +74,5 @@
 <replacement offset='31' length='185'>#include "cpputils/graphics/image.h"&#10;#include "cpputils/graphics/image_event.h"&#10;#include "game_element.h"&#10;#include "opponent.h"&#10;#include "player.h"&#10;#include &lt;iostream>&#10;#include &lt;vector></replacement>
 <replacement offset='315' length='2'>&#10;</replacement>
 <replacement offset='1165' length='3'>&#10;&#10;</replacement>
-<replacement offset='1436' length='2'> </replacement>
+<replacement offset='1443' length='2'> </replacement>
 </replacements>

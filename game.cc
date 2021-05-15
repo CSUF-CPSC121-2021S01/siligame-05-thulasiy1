@@ -151,3 +151,21 @@ void Game::LaunchProjectile() {
     }
   }
 }
+
+void Game::RemoveInactive() {
+  for (int i = o.size(); i >= 0; i++) {
+    if (!o[i]->GetIsActive()) {
+      o.erase(o.begin() + i);
+    }
+  }
+  for (int j = op.size(); j >= 0; j++) {
+    if (!op[j]->GetIsActive()) {
+      op.erase(op.begin() + j);
+    }
+  }
+  for (int k = o.size(); k >= 0; k++) {
+    if (!pp[k]->GetIsActive()) {
+      pp.erase(pp.begin() + k);
+    }
+  }
+}

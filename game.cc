@@ -31,9 +31,9 @@ void Game::CreatePlayerProjectiles() {
 void Game::Init() {
   p.SetX(180);
   p.SetY(350);
-  //CreateOpponents();
-  //CreateOpponentProjectiles();
-  //CreatePlayerProjectiles();
+  // CreateOpponents();
+  // CreateOpponentProjectiles();
+  // CreatePlayerProjectiles();
   image.AddMouseEventListener(*this);
   image.AddAnimationEventListener(*this);
 }
@@ -146,7 +146,7 @@ void Game::Start() { image.ShowUntilClosed(); }
 void Game::LaunchProjectile() {
   for (int i = 0; i < o.size(); i++) {
     std::unique_ptr<OpponentProjectile> opponents = o[i]->LaunchProjectile();
-    if(o != nullptr) {
+    if (o != nullptr) {
       op.push_back(std::move(opponents));
     }
   }

@@ -16,15 +16,17 @@ class Game : public graphics::AnimationEventListener,
   Game(int width, int height)
       : width_(width), height_(height), image(width, height) {}
 
-  std::vector<Opponent>& GetOpponents() { return o; }
-  std::vector<OpponentProjectile>& GetOpponentProjectiles() { return op; }
-  std::vector<PlayerProjectile>& GetPlayerProjectiles() { return pp; }
-  Player& GetPlayer() { return p; }
+  std::vector<std::unique_ptr<Opponent>> &GetOpponents() { return o; }
+  std::vector<std::unique_ptr<OpponentProjectile>> &GetOpponentProjectiles() {
+    return op;
+  }
+  std::vector<std::unique_ptr<PlayerProjectile>> &GetPlayerProjectiles() {
+    return pp;
+  }
+  Player &GetPlayer() { return p; }
 
-  graphics::Image& GetGameScreen();
+  graphics::Image &GetGameScreen();
   void CreateOpponents();
-  void CreateOpponentProjectiles();
-  void CreatePlayerProjectiles();
 
   void Init();
 
@@ -38,9 +40,13 @@ class Game : public graphics::AnimationEventListener,
 
   void OnAnimationStep() override;
 
-  void OnMouseEvent(const graphics::MouseEvent& mouse_event) override;
+  void OnMouseEvent(const graphics::MouseEvent &mouse_event) override;
 
-  void LaunchProjectile();
+  int GetScore() { return score_; }
+
+  bool HasLost() { return haslost_; }
+
+  void LaunchProjectiles();
 
   void RemoveInactive();
 
@@ -48,10 +54,12 @@ class Game : public graphics::AnimationEventListener,
   int width_;
   int height_;
   graphics::Image image;
-  std::vector<Opponent> o;
-  std::vector<OpponentProjectile> op;
-  std::vector<PlayerProjectile> pp;
+  std::vector<std::unique_ptr<Opponent>> o;
+  std::vector<std::unique_ptr<OpponentProjectile>> op;
+  std::vector<std::unique_ptr<PlayerProjectile>> pp;
   Player p;
+  int score_;
+  bool haslost_;
 };
 
 #endif  // GAME_H

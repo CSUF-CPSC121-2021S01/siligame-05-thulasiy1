@@ -2,7 +2,7 @@
 #include "cpputils/graphics/image.h"
 #include "game_element.h"
 
-void Opponent::Draw(graphics::Image& image) {
+void Opponent::Draw(graphics::Image &image) {
   graphics::Image opponent;
   opponent.Load("o.bmp");
   for (int i = 0; i < width_; i++) {
@@ -13,7 +13,7 @@ void Opponent::Draw(graphics::Image& image) {
   }
 }
 
-void OpponentProjectile::Draw(graphics::Image& image) {
+void OpponentProjectile::Draw(graphics::Image &image) {
   graphics::Image opponentprojectile;
   opponentprojectile.Load("op.bmp");
   for (int i = 0; i < width_; i++) {
@@ -24,7 +24,7 @@ void OpponentProjectile::Draw(graphics::Image& image) {
   }
 }
 
-void Opponent::Move(const graphics::Image& picture) {
+void Opponent::Move(const graphics::Image &picture) {
   SetX(GetX() + 1);
   SetY(GetY() + 1);
   if (IsOutOfBounds(picture)) {
@@ -34,7 +34,7 @@ void Opponent::Move(const graphics::Image& picture) {
   }
 }
 
-void OpponentProjectile::Move(const graphics::Image& picture) {
+void OpponentProjectile::Move(const graphics::Image &picture) {
   SetX(GetX() + 1);
   SetY(GetY() + 1);
   if (IsOutOfBounds(picture)) {
@@ -44,14 +44,14 @@ void OpponentProjectile::Move(const graphics::Image& picture) {
   }
 }
 
-std::unique_ptr<OpponentProjectile> OpponentProjectile::LaunchProjectile() {
-  std::unique_ptr<OpponentProjectile> projectile;
+std::unique_ptr<class OpponentProjectile> Opponent::LaunchProjectile() {
+  std::unique_ptr<OpponentProjectile> opponentprojectile =
+      std::make_unique<OpponentProjectile>(GetX(), GetY());
   int number = 0;
-  if (number < 3) {
+  if (number < 1) {
     number++;
     return nullptr;
   } else {
-    projectile = std::make_unique<OpponentProjectile>(GetX(), GetY());
-    return std::move(projectile);
+    return std::move(opponentprojectile);
   }
 }

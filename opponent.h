@@ -12,6 +12,8 @@ class Opponent : public GameElement {
   void Draw(graphics::Image& image);
 
   void Move(const graphics::Image& picture);
+
+  std::unique_ptr<class OpponentProjectile> LaunchProjectile();
 };
 
 class OpponentProjectile : public GameElement {
@@ -22,8 +24,6 @@ class OpponentProjectile : public GameElement {
   void Draw(graphics::Image& image);
 
   void Move(const graphics::Image& picture);
-
-  std::unique_ptr<OpponentProjectile> LaunchProjectile();
 };
 
 #endif  // OPPONENT_H

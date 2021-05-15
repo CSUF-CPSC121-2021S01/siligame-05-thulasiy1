@@ -59,6 +59,7 @@ void Game::UpdateScreen() {
   if (p.GetIsActive()) {
     p.Draw(image);
   }
+  image.DrawText(0, 0, "Score: " + (image.GetScore()), white)
 }
 
 void Game::MoveGameElements() {
@@ -103,8 +104,13 @@ void Game::FilterIntersections() {
 }
 
 void Game::OnAnimationStep() {
+  if (o.size() < 1) {
+    CreateOpponents();
+  }
   MoveGameElements();
+  LaunchProjectile();
   FilterIntersections();
+  RemoveInactive();
   UpdateScreen();
   image.Flush();
 }
@@ -126,6 +132,12 @@ void Game::OnMouseEvent(const graphics::MouseEvent &mouse) {
       p.SetX(location_x);
       p.SetY(location_y);
     }
+  }
+  if (mouse.GetMouseAction() == graphics::MouseAction::kMoved ||
+      mouse.GetMouseAction() == graphics::MouseAction::kDragged) {
+    std::unique_ptr<PlayerProjectile> OnMouseEvent_o =
+        std::make_unique<PlayerProjectile>(GetX(), GetY());
+    pp.push_back(std::move(OnMouseEvent_o));
   }
 }
 

@@ -1,0 +1,16 @@
+---
+MainSourceFile:  '/home/student/siligame-05-thulasiy1/player.cc'
+Diagnostics:     
+  - DiagnosticName:  clang-analyzer-core.UndefinedBinaryOperatorResult
+    Message:         'The left operand of ''<'' is a garbage value'
+    FileOffset:      1253
+    FilePath:        opponent.cc
+    Notes:           
+      - Message:         '''number'' declared without an initial value'
+        FilePath:        opponent.cc
+        FileOffset:      1228
+      - Message:         'The left operand of ''<'' is a garbage value'
+        FilePath:        opponent.cc
+        FileOffset:      1253
+    Replacements:    []
+...
